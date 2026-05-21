@@ -40,7 +40,13 @@ cd caminos
 cargo build --release
 ````
 
-Now you can run any experiment from the paper! Exa
+Now you can run any experiment from the paper! Example:
+
+```bash
+cd simulation_files/100k-servers/Throughput
+../../../caminos/target/release/caminos . -a local #Runs all the experiments from the directory defined in the main.cfg.
+
+```
 
 Now, to plot the finished experiments inside any directory run:
 
