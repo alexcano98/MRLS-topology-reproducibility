@@ -1,0 +1,66 @@
+[	Plots
+	{
+		selector: [=configuration.traffic.legend_name, =configuration.traffic.load],//Make a plot for each value of the selector
+		kind: [
+			Plotkind{	
+				array: = sum_group{ container: fill_list{container:at{container:result.packet_defined_statistics, position:0}, binding: "x", expression: x.count, to_fill:at{container:x.key, position:0}, step:1, default: 0}, box_size:10},
+				label_abscissas: "packet latency",
+				label_ordinates: "frequency",
+				//min_ordinate: 0.0,
+				//max_ordinate: 1.0,
+				//min_abscissa: 000,
+			},
+		],
+		legend: [=configuration.topology.legend_name],
+		prefix: "msghistogramlat",
+		backend: Tikz
+		{
+			tex_filename: "packet_latency_histogram.tex",
+			pdf_filename: "packet_latency_histogram.pdf",
+		},
+	},
+	Plots
+	{
+		selector:=configuration.traffic.legend_name, //Make a plot for each value of the selector
+		kind: [Plotkind{
+			abscissas: =configuration.topology.legend_name,
+			parameter: =configuration.topology.legend_name,
+			label_abscissas: "offered load",
+			ordinates: =result.linux_high_water_mark,
+			label_ordinates: "peak memory",
+			min_ordinate: 0.0,
+			//max_ordinate: 1.0,
+			raw:"y memory ticks from kilobytes,",
+		}],
+		legend: =configuration.traffic.legend_name,
+		prefix: "memory",
+		backend: Tikz
+		{
+			tex_filename: "peak_memory.tex",
+			pdf_filename: "peak_memory.pdf",
+		},
+	},
+	Plots
+	{
+		selector: [
+			=configuration.traffic.legend_name,
+			=configuration.traffic.map.legend_name, 
+		],//Make a plot for each value of the selector
+		kind: [Plotkind{
+			label_abscissas: "path length",
+			label_ordinates: "amount fo packets",
+			histogram: =result.total_packet_per_hop_count,
+			min_ordinate: 0.0,
+			//max_ordinate: 1.0,
+		}],
+		legend: =configuration.topology.legend_name,
+		prefix: "hophistogram",
+		backend: Tikz
+		{
+			tex_filename: "hop_histogram.tex",
+			pdf_filename: "hop_histogram.pdf",
+		},
+	},
+]
+
+

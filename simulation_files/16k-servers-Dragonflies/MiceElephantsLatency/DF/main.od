@@ -1,0 +1,24 @@
+[	Plots
+	{
+		selector: [=configuration.traffic.legend_name, =configuration.traffic.load],//Make a plot for each value of the selector
+		kind: [
+			Plotkind{	
+				array: = sum_group{ container: fill_list{container:at{container:result.packet_defined_statistics, position:0}, binding: "x", expression: x.count, to_fill:at{container:x.key, position:0}, step:1, default: 0}, box_size:10},
+				label_abscissas: "packet latency",
+				label_ordinates: "frequency",
+				//min_ordinate: 0.0,
+				//max_ordinate: 1.0,
+				//min_abscissa: 000,
+			},
+		],
+		legend: [=configuration.topology.legend_name],
+		prefix: "msghistogramlat",
+		backend: Tikz
+		{
+			tex_filename: "packet_latency_histogram.tex",
+			pdf_filename: "packet_latency_histogram.pdf",
+		},
+	},
+]
+
+

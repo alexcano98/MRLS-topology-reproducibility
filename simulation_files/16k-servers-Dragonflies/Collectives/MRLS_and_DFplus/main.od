@@ -1,0 +1,53 @@
+[
+	Plots
+	{
+		selector: [
+			=configuration.traffic.legend_name,
+		],//Make a plot for each value of the selector
+		kind: [
+			Plotkind{
+				bar: true,
+				label_abscissas: "Number of App blocks",
+				label_ordinates: "Cycles to finish",
+				min_ordinate: 0.0,
+				min_abscissa: 000,
+				ordinates: = result.cycle,
+				abscissas: =configuration.topology.legend_name,
+				parameter: =configuration.topology.legend_name,
+			}
+		],
+		legend: [
+			//=configuration.routing.legend_name,
+			=configuration.traffic.map.legend_name, 
+		],
+		prefix: "throughput",
+		backend: Tikz
+		{
+			tex_filename: "cycles.tex",
+			pdf_filename: "cycles.pdf",
+		},
+	},
+	Plots
+	{
+		selector: [=configuration.traffic.legend_name, =configuration.traffic.map.legend_name],//Make a plot for each value of the selector
+		kind: [Plotkind{
+			//parameter: =configuration.traffic.load,
+			//abscissas: =configuration.traffic.load,
+			label_abscissas: "path length",
+			//ordinates: =result.average_packet_hops,
+			label_ordinates: "amount fo packets",
+			histogram: =result.total_packet_per_hop_count,
+			min_ordinate: 0.0,
+			//max_ordinate: 1.0,
+		}],
+		legend: =configuration.topology.legend_name,
+		prefix: "hophistogram",
+		backend: Tikz
+		{
+			tex_filename: "hop_histogram.tex",
+			pdf_filename: "hop_histogram.pdf",
+		},
+	},
+]
+
+
