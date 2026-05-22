@@ -43,7 +43,7 @@ cargo build --release
 Now you can run any experiment from the paper! Example:
 
 ```bash
-cd simulation_files/100k-servers/Throughput
+cd simulation_files/simulation_files/11k-servers/Throughput/OFT-vs-MRLS-cost-1/
 ../../../caminos/target/release/caminos . -a local #Runs all the experiments from the directory defined in the main.cfg.
 
 ```
