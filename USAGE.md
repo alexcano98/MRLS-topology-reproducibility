@@ -42,8 +42,7 @@ You can symlink or add it to your PATH for convenience.
 ## 🚀 Running Simulations
 
 All simulations used in the paper are organized in subdirectories under the `simulation_files/` directory.
-Each subdirectory contains all the simulations corresponding to one figure of the paper.
-The elements contained in each subdirectory are:
+The elements that can be contained in each simulation directory are:
 
 - `main.cfg`: file which define the parameters for the simulations to run in that directory.
 - `main.od`: file which define the parameters to extract plots from the simulations results.

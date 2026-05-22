@@ -6,7 +6,7 @@
 
 * [`caminos-lib`](https://github.com/alexcano98/caminos-lib) — Included as a Git submodule. This is a custom fork of [`caminos-lib`](https://github.com/nakacristo/caminos-lib), originally published as a Rust crate on [crates.io](https://crates.io/crates/caminos-lib), for simulating interconnection networks.
 * [`caminos`](https://github.com/alexcano98/caminos) — Also included as a Git submodule. This lightweight application integrates the forked `caminos-lib` to execute simulations.
-* [`simulation_files/`](./simulation_files) — Configuration files used to reproduce the experiments presented in the paper. Each subdirectory corresponds to a specific experiment and includes multiple simulation setups.
+* [`simulation_files/`](./simulation_files) — Configuration files used to reproduce the experiments presented in the paper.
 * [`USAGE.md`](./USAGE.md) — Complete usage and configuration instructions.
 * [`README.md`](./README.md) — Project overview (this file).
 
@@ -43,15 +43,15 @@ cargo build --release
 Now you can run any experiment from the paper! Example:
 
 ```bash
-cd simulation_files/simulation_files/11k-servers/Throughput/OFT-vs-MRLS-cost-1/
-../../../caminos/target/release/caminos . -a local #Runs all the experiments from the directory defined in the main.cfg.
+cd simulation_files/11k-servers/Throughput/OFT-vs-MRLS-cost-1/
+../../../../caminos/target/release/caminos . -a local #Runs all the experiments from the directory defined in the main.cfg.
 
 ```
 
 Now, to plot the finished experiments inside any directory run:
 
 ````bash
-../../caminos/target/release/caminos . -a output #Plot the experiment results following the main.od.
+../../../../caminos/target/release/caminos . -a output #Plot the experiment results following the main.od.
 ````
 
 For more a more detailed explanation, go to [USAGE.md](USAGE.md).
