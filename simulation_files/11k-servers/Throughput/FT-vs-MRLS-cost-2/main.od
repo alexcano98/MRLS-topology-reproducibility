@@ -1,0 +1,65 @@
+[
+	Plots
+	{
+		selector: [=configuration.traffic.pattern.legend_name, =configuration.traffic.load,],//Make a plot for each value of the selector
+
+		kind: [Plotkind{
+			label_abscissas: "path length",
+			label_ordinates: "amount fo packets",
+			histogram: =result.total_packet_per_hop_count,
+			min_ordinate: 0.0,
+			//max_ordinate: 1.0,
+		}],
+		legend: =configuration.topology.legend_name,
+		prefix: "hophistogram",
+		backend: Tikz
+		{
+			tex_filename: "hop_histogram.tex",
+			pdf_filename: "hop_histogram.pdf",
+		},
+	},
+	Plots
+	{
+		selector: [=configuration.traffic.pattern.legend_name, ],//Make a plot for each value of the selector
+		kind: [
+			Plotkind{
+				bar: true,
+				parameter: =mul{first:configuration.traffic.load, second: 2},
+				abscissas: =mul{first:configuration.traffic.load, second: 2},
+				label_abscissas: "Offered load",
+				ordinates: = mul{first: result.accepted_load, second: 2},
+				label_ordinates: "throughput",
+				min_ordinate: 0.0,
+				//max_ordinate: 50000,
+			},
+			Plotkind{
+				bar: true,
+				parameter: =mul{first:configuration.traffic.load, second: 2},
+				abscissas: =mul{first:configuration.traffic.load, second: 2},
+				label_abscissas: "Offered load",
+				ordinates: = mul{first: result.average_link_utilization, second: 2},
+				label_ordinates: "link util",
+				min_ordinate: 0.0,
+				//max_ordinate: 50000,
+			},
+			Plotkind{
+				bar: true,
+				parameter: =mul{first:configuration.traffic.load, second: 2},
+				abscissas: =mul{first:configuration.traffic.load, second: 2},
+				label_abscissas: "Offered load",
+				ordinates: =result.average_packet_hops,
+				label_ordinates: "avg packet hops",
+				min_ordinate: 0.0,
+				//max_ordinate: 50000,
+			},
+			
+		],
+		legend: [=configuration.topology.legend_name],
+		prefix: "barthroughput",
+		backend: Tikz
+		{
+			tex_filename: "bar_throughput.tex",
+			pdf_filename: "bar_throughput.pdf",
+		},
+	},
+]
